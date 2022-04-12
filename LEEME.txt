@@ -1,0 +1,141 @@
+﻿*************************************************************************
+*	 	Revocación de Mandato 2022
+*
+*		Cómputos de la Revocación de Mandato 2022										
+*************************************************************************
+
+A. El Sistema de Cómputos de la Revocación de Mandato 2022 permite la descarga de la base de datos a través de un archivo zip, el cual contiene: el archivo de resultados (en formato CSV), el catálogo de secciones que integran a las Unidades Territoriales (en formato CSV) y el presente archivo (LÉEME) con la descripción de cada una de las variables del archivo de resultados y del catálogo las Unidades Territoriales.
+
+B. El archivo de resultados (en formato CSV) contiene la información de todas las Actas de la Revocación de Mandato de la base de datos y se nombra conforme a la fecha y hora de corte de la información, más el sufijo "COMPUTOS_RM2022", por ejemplo "20220410_2005_COMPUTOS_RM2022.csv" para un archivo generado con corte de las 20:05 horas del 10 de abril de 2022.
+
+C. La información en el archivo de resultados se divide en dos secciones:
+
+    a. Primera sección, encabezado: 
+
+        i. Se presenta la fecha y la hora de la generación de los archivos; éstas corresponden a las que aparecen en el sitio web de publicación, en las que se considera el Tiempo del Centro de la República Mexicana, por ejemplo:
+            10/04/2022 20:05 (UTC-5)
+     
+        ii. Se presenta el estatus de las Actas de Casillas que se están incluyendo en la base de datos y sus respectivos porcentajes calculados, separados por coma "," ejemplo:
+	
+            ACTAS_ESPERADAS , ACTAS_COMPUTADAS , PORCENTAJE_ACTAS_COMPUTADAS , LISTA_NOMINAL_OFICIAL , LISTA_NOMINAL_DE_CASILLAS_APROBADAS , LISTA_NOMINAL_DE_CASILLAS_NO_APROBADAS , LISTA_NOMINAL_ACTAS_COMPUTADAS , TOTAL_VOTOS , PORCENTAJE_PARTICIPACIÓN_CIUDADANA
+
+            La descripción de cada campo se muestra a continuación:
+
+            1. ACTAS_ESPERADAS - Número de Actas aprobadas por los Consejos Distritales que correspondan. Este conjunto de Actas conforma el catálogo de Actas esperadas.
+
+            2. ACTAS_COMPUTADAS - Número de Actas aprobadas, de las cuales se tiene su correspondiente Acta al momento del corte de información.
+
+            3. PORCENTAJE_ACTAS_COMPUTADAS - Porcentaje de Actas computadas al momento del corte de información, calculado respecto del total de Actas esperadas. Los decimales son expresados a cuatro posiciones, el decimal de la cuarta posición es truncado y no redondeado.
+
+            4. LISTA_NOMINAL_OFICIAL - Es el agregado del número de ciudadanas y ciudadanos con derecho a emitir su voto en las Mesas Directivas de Casillas.
+
+	    5. LISTA_NOMINAL_DE_CASILLAS_APROBADAS - Número de ciudadanas y ciudadanos con derecho a votar que integran la lista nominal de las actas de casillas aprobadas.
+
+            6. LISTA_NOMINAL_DE_CASILLAS_NO_APROBADAS - Número de ciudadanas y ciudadanos con derecho a votar que integran la lista nominal de las actas de casillas no aprobadas.
+
+    	    7. LISTA_NOMINAL_ACTAS_COMPUTADAS - Es el agregado del número de ciudadanas y ciudadanos con derecho a votar respecto a las Casillas que integran la Lista Nominal de las Actas computadas al momento del corte de información.
+
+            8. TOTAL_VOTOS - Agregado de la suma de votos emitidos de Actas computadas al momento del corte de información. El total de votos, se calcula mediante la suma que realiza automáticamente el sistema informático de Cómputos.
+
+            9. PORCENTAJE_PARTICIPACION_CIUDADANA - Porcentaje de ciudadanas y ciudadanos que emitieron su voto con base en la Lista Nominal, cuyas Actas ya han sido computadas al momento del corte de información. Los decimales son expresados a cuatro posiciones, el decimal de la cuarta posición es truncado y no redondeado.
+
+    b.  Segunda sección, corresponde a los datos de identificación del Acta de Casilla, extraídos de la base de datos; cada línea corresponde a un Acta, separados por coma ",". Los datos son los siguientes:
+      
+        CLAVE_CASILLA , CLAVE_ACTA , ID_ENTIDAD , ENTIDAD , ID_DISTRITO_FEDERAL , DISTRITO_FEDERAL , SECCIÓN , ID_CASILLA , TIPO_CASILLA , EXT_CONTIGUA , UBICACIÓN_CASILLA , NUM_ACTA_IMPRESO , QUE_SE_LE_REVOQUE_EL_MANDATO_POR_PÉRDIDA_DE_LA_CONFIANZA , QUE_SIGA_EN_LA_PRESIDENCIA_DE_LA_REPÚBLICA , NULOS , TOTAL_VOTOS_CALCULADOS , LISTA_NOMINAL , OBSERVACIONES , MECANISMOS_TRASLADO , TIPO_DOCUMENTO , FECHA_HORA_CAPTURA , CÓDIGO_INTEGRIDAD
+   
+        1. CLAVE_CASILLA - Clave única de casilla, se conforma por la concatenación de las variables: ID_ENTIDAD, SECCION, TIPO_CASILLA, ID_CASILLA y EXT_CONTIGUA
+		Por ejemplo: 
+		010338B0100
+
+        2. CLAVE_ACTA - Clave única de acta, está compuesta por la unión de los parámetros:
+		CLAVE_CASILLA y NUM_ACTA_IMPRESO
+		Por ejemplo: 
+		010338B010001
+
+        3. ID_ENTIDAD - Muestra el identificador de la Entidad Federativa a la que corresponde el Acta. Cero (0) para el Acta de votación en el extranjero.
+
+        4. ENTIDAD - Indica el nombre de la Entidad Federativa a la que corresponde el Acta. "VOTO EN EL EXTRANJERO" para el Acta de votación en el extranjero.
+
+        5. ID_DISTRITO_FEDERAL - Número del Distrito Electoral Federal. Cero (0) para el Acta de votación en el extranjero.
+
+        6. DISTRITO_FEDERAL - Nombre del Distrito Electoral Federal. Vacío para el Acta de votación en el extranjero.
+
+        7. SECCIÓN - Corresponde a la clave de la Sección de la Casilla.
+
+	8. ID_CASILLA - Número identificador de la Casilla.
+
+	9. TIPO_CASILLA	- Se refiere al tipo de Casilla.
+		B, para una casilla Básica.
+		C, para una casilla Contigua.
+		S, para una casilla Especial.
+		M, para la mesa de escrutinio, contiene información de voto en el extranjero.
+
+	10. EXT_CONTIGUA - Número de casilla contigua a una extraordinaria, para este caso, siempre será 0 al no tener consideradas casillas extraordinarias.
+
+	11. UBICACIÓN_CASILLA - Identifica el tipo de Casilla y toma los siguientes valores:
+		- Urbana
+		- No Urbana
+
+	12. NUM_ACTA_IMPRESO - Identificador del tipo de acta y toma los siguientes valores:
+		- 1, para el Acta de votación en territorio nacional.
+		- 0, para el Acta de votación en el extranjero.
+
+        13. QUE_SE_LE_REVOQUE_EL_MANDATO_POR_PÉRDIDA_DE_LA_CONFIANZA - Número de votos emitidos para que se le revoque el mandato.
+
+        14. QUE_SIGA_EN_LA_PRESIDENCIA_DE_LA_REPÚBLICA - Número de votos emitidos para que siga en la presidencia.
+
+        15. NULOS - Número de votos nulos.
+
+        16. TOTAL_VOTOS_CALCULADOS - Suma de los votos emitidos. El total de votos se calcula mediante la suma que realiza automáticamente el sistema informático de Cómputos.
+
+	17. LISTA_NOMINAL - Número de ciudadanas y ciudadanos con derecho a votar que integran la Lista Nominal de la casilla.
+		
+	18. OBSERVACIONES - 
+				
+		- "Acta válida"
+		- "Acta válida (Casilla instalada con suspensión definitiva de la votación)"
+		- "Casilla no Instalada"
+		- "Paquete no recibido"
+		- "Paquete sin papeletas"
+		- "Recuento"
+
+	19. MECANISMOS_TRASLADO	- Indica los mecanismos de traslado aprobados por los Consejos Distritales del INE aplicables para cada uno de los paquetes electorales, desde la casilla hasta el Consejo respectivo correspondiente. 
+
+	Dichos mecanismos de traslado se implementan cuando las condiciones geográficas, de infraestructura, sociopolíticas y/o meteorológicas dificultan significativamente el traslado directo al Consejo respectivo en tiempo y forma.
+
+	Los valores que puede tomar son los siguientes:
+
+		- D, para los Dispositivos de Apoyo para el Traslado de Presidentes de Mesas Directiva de Casilla; 
+		- F, para los Centros de Recepción y Traslado fijos.
+		- I, para los Centros de Recepción y Traslado itinerantes.
+
+	Si el traslado del Acta no se realiza mediante alguno de estos mecanismos, el campo aparece vacío.
+
+	20. TIPO_DOCUMENTO - Identifica el tipo de Acta
+		- "Acta de Casilla"
+		- "Acta de paquete recontado"
+
+	21. FECHA_HORA_CAPTURA - Fecha y hora de captura del Acta. La hora corresponde al Tiempo del Centro del país.
+		        
+	22. CÓDIGO_INTEGRIDAD - Esta serie de caracteres únicos están asociados al archivo de la imagen digitalizada del Acta. Con este código podrás identificar fácilmente si la imagen del Acta fue manipulada con algún software de edición de imágenes. El código es generado a través de una función criptográfica hash, denominada SHA256.
+
+D. El archivo de Unidades Territoriales (en formato CSV) contiene la información de todas las secciones electorales que integran las mismas y se nombra como "CATALOGO_UNIDADES_TERRITORIALES_RM2022.csv". Cada línea corresponde a una sección electoral, separados por coma ",". Los datos son los siguientes:
+
+        ID_ENTIDAD , ENTIDAD , ID_DISTRITO_FEDERAL , DISTRITO_FEDERAL , SECCION , UNIDAD_TERRITORIAL , SEDE
+
+        1. ID_ENTIDAD - Muestra el identificador de la Entidad Federativa a la que corresponde la Sección Electoral.
+
+	2. ENTIDAD - Indica el nombre de la Entidad Federativa a la que corresponde la Sección Electoral.
+ 	
+	3. ID_DISTRITO_FEDERAL - Número del Distrito Electoral Federal.	
+
+        4. DISTRITO_FEDERAL - Nombre del Distrito Electoral Federal.
+
+	5. SECCIÓN - Corresponde a la clave de la Sección Electoral de la UT.
+
+        6. UNIDAD_TERRITORIAL - División geográfica que considera al menos una Sección o un grupo de Secciones Electorales. Cada Unidad Territorial (UT) tiene una sección Electoral Sede.
+        
+	7. SEDE - Indica si la sección es sede de la UT asociada; los valores que puede tomar son los siguientes:
+		
+		- "Sí", cuando la Sección Electoral es sede de la UT.
+ 		- "No", cuando la Sección Electoral forma parte alguna UT, no obstante, no es la sede de esta.
